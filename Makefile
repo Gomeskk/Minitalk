@@ -1,9 +1,9 @@
 # ------------------------------ Sources ------------------------------
 
 # Files
-SERVER		=	ft_server/ft_server.c
+SERVER		=	ft_server.c
 
-CLIENT		=	ft_client/ft_client.c
+CLIENT		=	ft_client.c
 
 LIBFT		=	cd libft && make
 
