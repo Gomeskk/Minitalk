@@ -6,7 +6,7 @@
 /*   By: joafaust <joafaust@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 13:08:44 by joafaust          #+#    #+#             */
-/*   Updated: 2024/10/03 12:02:45 by joafaust         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:09:29 by joafaust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,6 @@ void	*ft_calloc_exit(size_t count, size_t size)
 		exit(EXIT_FAILURE);
 	ft_bzero(ret, t_size);
 	return (ret);
-}
-/*
-** int	ft_recur_power(int nb, int power)
-** This function returns the result of nb ^ power
-** Example: ft_recur_power(2, 3) = 2 ^ 3 = 8
-*/
-
-int	ft_recur_power(int nb, int power)
-{
-	if (power < 0)
-		return (0);
-	else if (power == 0 && power == 0)
-		return (1);
-	else
-		return (nb * ft_recur_power(nb, power - 1));
 }
 
 static void	rec_strlen(int *curr_bit, char **str, int *rec, int j)

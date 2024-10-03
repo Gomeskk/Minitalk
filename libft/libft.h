@@ -6,16 +6,16 @@
 /*   By: joafaust <joafaust@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 06:21:01 by joafaust          #+#    #+#             */
-/*   Updated: 2024/10/03 11:09:00 by joafaust         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:10:01 by joafaust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 void				ft_bzero(void *s, size_t n);
 int					ft_isalnum(int c);
@@ -69,5 +69,10 @@ void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
+/*
+** UTILS PLUS
+*/
+
+int					ft_recur_power(int nb, int power);
 
 #endif

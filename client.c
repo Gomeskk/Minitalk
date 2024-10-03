@@ -6,7 +6,7 @@
 /*   By: joafaust <joafaust@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 13:08:40 by joafaust          #+#    #+#             */
-/*   Updated: 2024/10/03 12:15:56 by joafaust         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:01:07 by joafaust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	send_nextchar_bit_bit(unsigned char len, int pid)
 	int	i;
 
 	i = -1;
-	while (++i <= 8)
+	while (++i < 8)
 	{
 		if (len & 0x01)
 			kill(pid, SIGUSR2);
