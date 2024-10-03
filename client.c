@@ -6,7 +6,7 @@
 /*   By: joafaust <joafaust@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 13:08:40 by joafaust          #+#    #+#             */
-/*   Updated: 2024/10/03 11:19:09 by joafaust         ###   ########.fr       */
+/*   Updated: 2024/10/03 12:15:56 by joafaust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	found_errors(int argc, char **argv)
 	if (argc != 3)
 		return (1);
 	i = -1;
-	while (argv[i][++i])
+	while (argv[1][++i])
 	{
 		if (!ft_strchr("0123456789", argv[1][i]))
 			return (1);
@@ -27,18 +27,18 @@ static int	found_errors(int argc, char **argv)
 	return (0);
 }
 
-static void	send_nextchar_bit_bit(unsigned char c, int pid)
+static void	send_nextchar_bit_bit(unsigned char len, int pid)
 {
 	int	i;
 
-	i = 0;
-	while (i <= 8)
+	i = -1;
+	while (++i <= 8)
 	{
-		if (c & 0x01)
+		if (len & 0x01)
 			kill(pid, SIGUSR2);
 		else
 			kill(pid, SIGUSR1);
-		c = c >> 1;
+		len = len >> 1;
 		usleep(WAIT_TIME);
 	}
 }
@@ -61,10 +61,10 @@ static void	ft_s_strlen_bit_bit(int len, int pid)
 
 int	main(int argc, char **argv)
 {
-	int pid;
-	char *str_send;
-	int len;
-	int i;
+	int		pid;
+	char	*str_send;
+	int		len;
+	int		i;
 
 	if (found_errors(argc, argv))
 		return (-1);
