@@ -6,7 +6,7 @@
 /*   By: joafaust <joafaust@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 13:08:44 by joafaust          #+#    #+#             */
-/*   Updated: 2024/10/03 15:30:03 by joafaust         ###   ########.fr       */
+/*   Updated: 2024/10/07 16:07:11 by joafaust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	rec_strlen(int *curr_bit, char **str, int *rec, int j)
 	(*curr_bit)++;
 }
 
-static void	ft_restart_var(int *len_rec, char **str, int *s)
+static void	ft_restart_var(int *len_rec, char **str, int *s, int client_pid)
 {
 	*len_rec = 0;
 	if (str)
@@ -52,16 +52,18 @@ static void	ft_restart_var(int *len_rec, char **str, int *s)
 		*str = 0;
 	}
 	*s = 0;
+	kill(client_pid, SIGUSR1);
 }
 
-static void	ft_rec_info_from_client(int signal)
+static void	ft_rec_info_from_client(int signal, siginfo_t *info, void *context)
 {
-	static int	char_val = 0;
-	static int	curr_bit = 0;
-	static int	len_rec = 0;
-	static int	i = 0;
-	static char	*final_str = 0;
+	static int		char_val = 0, curr_bit = 0, i = 0, len_rec = 0;
+	static char		*final_str = 0;
+	static pid_t	client_pid = 0;
 
+	(void)context;
+	if (client_pid == 0)
+		client_pid = info->si_pid;
 	if (!len_rec)
 		rec_strlen(&curr_bit, &final_str, &len_rec, signal);
 	else
@@ -73,7 +75,7 @@ static void	ft_rec_info_from_client(int signal)
 			final_str[i++] = char_val;
 			curr_bit = 0;
 			if (char_val == 0)
-				return (ft_restart_var(&len_rec, &final_str, &i));
+				return (ft_restart_var(&len_rec, &final_str, &i, client_pid));
 			char_val = 0;
 			return ;
 		}
@@ -87,13 +89,17 @@ static void	ft_rec_info_from_client(int signal)
 
 int	main(void)
 {
-	int	id;
+	struct sigaction	sa;
+	int					id;
 
 	id = (int)(getpid());
 	ft_putnbr_fd(id, 1);
 	ft_putchar_fd('\n', 1);
-	signal(SIGUSR1, ft_rec_info_from_client);
-	signal(SIGUSR2, ft_rec_info_from_client);
+	sa.sa_sigaction = ft_rec_info_from_client;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = SA_SIGINFO;
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
 		usleep(WAIT_TIME);
 }
