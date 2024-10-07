@@ -6,7 +6,7 @@
 /*   By: joafaust <joafaust@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 13:08:40 by joafaust          #+#    #+#             */
-/*   Updated: 2024/10/07 16:08:46 by joafaust         ###   ########.fr       */
+/*   Updated: 2024/10/07 16:37:06 by joafaust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	send_nextchar_bit_bit(unsigned char len, int pid)
 			kill(pid, SIGUSR1);
 		len = len >> 1;
 		usleep(WAIT_TIME);
-		printf("Client: Acknowledgment received\n");
+		//printf("Client: Acknowledgment received\n");
 	}
 }
 
@@ -57,7 +57,7 @@ static void	ft_s_strlen_bit_bit(int len, int pid)
 	int	i;
 
 	i = -1;
-	printf("Client: Sending message length %d (in bits):\n", len);
+	//printf("Client: Sending message length %d (in bits):\n", len);
 	while (++i < 32)
 	{
 		if (len & 0x01)
