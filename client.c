@@ -6,7 +6,7 @@
 /*   By: joafaust <joafaust@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 13:08:40 by joafaust          #+#    #+#             */
-/*   Updated: 2024/10/07 16:37:06 by joafaust         ###   ########.fr       */
+/*   Updated: 2024/10/08 13:04:27 by joafaust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	main(int argc, char **argv)
 	if (found_errors(argc, argv))
 		return (-1);
 	pid = ft_atoi(argv[1]);
-	if (pid <= 0)
+	if (pid <= 0 || kill(pid, 0) == -1)
 		return (-1);
 	str_send = argv[2];
 	len = ft_strlen(str_send);
