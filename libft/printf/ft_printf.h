@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joafaust <joafaust@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/30 14:42:22 by joafaust          #+#    #+#             */
-/*   Updated: 2024/10/09 23:11:04 by joafaust         ###   ########.fr       */
+/*   Created: 2024/05/17 10:47:13 by joafaust          #+#    #+#             */
+/*   Updated: 2024/05/23 13:10:42 by joafaust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-# include "../libft/printf/ft_printf.h"
-# include "../libft/libft.h"
-# include <signal.h>
-# include <stdlib.h>
+# include <limits.h>
+# include <stdarg.h>
+# include <stdio.h>
 # include <unistd.h>
+# define DECIMAL "0123456789"
+# define HEXA "0123456789abcdef"
+# define HEXA2 "0123456789ABCDEF"
 
-# define WAIT_TIME 700
+int	ft_printf(const char *str, ...);
+int	conversions(const char *str, va_list p);
+int	ft_putdigit(long long int n, int base, char	*bstr);
+int	ft_putstr(char *s);
+int	ft_putpointer(unsigned long int n, int flag, char	*basestr);
 
 #endif
