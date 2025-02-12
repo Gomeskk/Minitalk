@@ -56,7 +56,7 @@ To send a message from the client:
 ```console
 ./client <server_pid> "Hello, World!"
 ```
-## Example
+## Example with bonus
 ![Minitalk Visualization](./Minitalk_example.gif)
 
 ## Common Pitfalls
