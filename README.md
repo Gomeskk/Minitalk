@@ -12,7 +12,7 @@ Minitalk relies on UNIX signals (```SIGUSR1``` and ```SIGUSR2```) to transmit da
 
   - Implement a server and a client program.
   - The server must:
-      - Print its $\color{red}{\textbf{PID}}$ (Process ID) when started.
+      - Print its $\color{crimson}{\textbf{PID}}$ (Process ID) when started.
       - Receive signals from the client and reconstruct the message.
       - Display the received message correctly.
         
@@ -61,10 +61,10 @@ To send a message from the client:
 
 ## Common Pitfalls
 
-  - Incorrect signal handling leading to message corruption.
-  - Not handling PID properly, causing failed communication.
-  - Sending signals too quickly without proper synchronization.
-  - Ignoring edge cases like empty messages or special characters.
+  - $\color{crimson}{\textbf{Incorrect signal handling}}$ leading to message corruption.
+  - $\color{crimson}{\textbf{Not handling PID properly}}$, causing failed communication.
+  - $\color{crimson}{\textbf{Sending signals too quickly}}$ without proper synchronization.
+  - $\color{crimson}{\textbf{Ignoring edge cases}}$ like empty messages or special characters.
     
 ## Conclusion
 The Minitalk project is an excellent introduction to IPC and low-level signal handling in UNIX systems. By implementing this project, students gain a deeper understanding of how processes communicate and how to work with signals efficiently.
